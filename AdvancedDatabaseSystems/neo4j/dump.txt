@@ -1,0 +1,107 @@
+//create node
+CREATE 
+ (S1:Building { name: "S-1", function: "service"}),  
+ (S2:Building { name: "S-2", function: "service"}),
+ (D1:Building { name: "D-1", function: "teaching"}), 
+ (U2:Building { name: "Candidates Application Centre", function: "teaching"}), 
+ (U1:Building { name: "U-1", function: "teaching"}), 
+
+ (C4:Building { name: "C-4", function: "teaching"}), 
+ (C3:Building { name: "C-3", function: "teaching"}), 
+ (C2:Building { name: "C-2", function: "teaching"}), 
+ (C1:Building { name: "C-1", function: "teaching"}), 
+ (A4:Building { name: "A-4", function: "teaching"}), 
+
+ (A3:Building { name: "A-3", function: "teaching"}), 
+ (A2:Building { name: "A-2", function: "teaching"}), 
+ (A1:Building { name: "A-1", function: "teaching"}), 
+ (A0:Building { name: "A-0", function: "teaching"}), 
+ (HA2:Building { name: "H-A2", function: "teaching"}),
+ 
+ (HA1:Building { name: "H-A1", function: "teaching"}), 
+ (B1:Building { name: "B-1", function: "teaching"}), 
+ (B2:Building { name: "B-2", function: "teaching"}), 
+ (B3:Building { name: "B-3", function: "teaching"}), 
+ (B4:Building { name: "B-4", function: "teaching"}), 
+
+ (HB3B4:Building { name: "H-B3B4", function: "teaching"}),
+ (HB1B2:Building { name: "H-B1B2", function: "teaching"})
+ 
+ //create adjacency
+ CREATE 
+  (C3)-[:ADJACENT {floors:[1,2,3]}]->(C4),
+  (C2)-[:ADJACENT {floors:[1,2,3]}]->(C3),
+  (C1)-[:ADJACENT {floors:[1,2,3]}]->(C2),
+  (C1)-[:ADJACENT {floors:[3]}]->(A1),
+  (A1)-[:ADJACENT {floors:[1,2]}]->(HA1),
+  
+  (A1)-[:ADJACENT {floors:[1]}]->(A2),
+  (A2)-[:ADJACENT {floors:[1,2]}]->(HA2),
+  (HA1)-[:ADJACENT {floors:[-1]}]->(HA2),
+  (B1)-[:ADJACENT {floors:[-1]}]->(B2),
+  (B2)-[:ADJACENT {floors:[-1]}]->(B3),
+  
+  (B3)-[:ADJACENT {floors:[-1]}]->(B4),
+  (B1)-[:ADJACENT {floors:[1,2]}]->(HB1B2),
+  (B2)-[:ADJACENT {floors:[1,2]}]->(HB1B2),
+  (B4)-[:ADJACENT {floors:[1,2]}]->(HB3B4),
+  (B3)-[:ADJACENT {floors:[1,2]}]->(HB3B4),
+  
+  (A0)-[:ADJACENT {floors:[3]}]->(A1),
+  (A3)-[:ADJACENT {floors:[1,2,3,4]}]->(A4),
+  (A3)-[:ADJACENT {floors:[1]}]->(U2),
+  (A4)-[:ADJACENT {floors:[4]}]->(C4),
+  (A4)-[:ADJACENT {floors:[1]}]->(D1),
+  
+  (U2)-[:ADJACENT {floors:[1,2,3]}]->(D1)
+  
+ //create faculties
+ CREATE
+  (EAIIB:Faculty {name: "EAIIB"}),
+  (GGEP:Faculty {name: "GGEP"}),
+  (NFM:Faculty {name: "NFM"}),
+  (MSEE:Faculty {name: "MSEE"}),
+  (MER:Faculty {name: "Faculty of Mechanical Engineering and Robotics"})
+ 
+  
+ //Set faculties into buildings
+ CREATE
+   (GGEP)-[:IN]->(A0),
+   (EAIIB)-[:IN]->(B1),
+   (MSEE)-[:IN]->(C4),
+   (NFM)-[:IN]->(A2),
+   (MER)-[:IN]->(B2)
+ 
+ //create rooms and assign them to buildings
+ CREATE
+    (R315:Room {Number: "315", Descrpition: "maki"})-[:IN]->(C2),
+    (R316:Room {Number: "316", Descrpition: "geist"})-[:IN]->(C2),
+    (R115:Room {Number: "115", Descrpition: "empty"})-[:IN]->(C1)
+
+// are there any buildings that are not connected to other buildings
+Match (b:Building) where not (b)-[:ADJACENT]-() return b;
+ 
+// how many service  facilities there are
+Match (b:Building {function:"service"}) return count(b);
+ 
+// what buildings A1 is connected with
+Match (a1:Building {name: "A-1"})-[:ADJACENT]-(b:Building) return a1,b;
+ 
+// what buildings A1 is connected with and at which floors
+Match (:Building {name: "A-1"})-[r:ADJACENT]-(b:Building) return b.name as BUILDING ,r.floors as CONNECTED_FLOORS
+ 
+//how to get from the Candidates Application Centre (U2) to the Faculty of Mechanical Engineering and Robotics (MER) without leaving the buildings ,
+//there is no path
+Match (u2:Building {name: "Candidates Application Centre"}), (:Faculty {name: "Faculty of Mechanical Engineering and Robotics"})-[:IN]->(merBuilding),
+p = shortestPath((u2)-[*]-(merBuilding))
+return p
+
+//another example where path exists
+Match (u2:Building {name: "Candidates Application Centre"}), (a0:Building {name: "A-0"}),
+p = shortestPath((u2)-[*]-(a0))
+return p
+
+//what is a shortest path (minimal number of buildings to go through) from the C-3 ground floor to the A-0 entrance?
+Match (c3:Building {name: "C-3"}), (a0:Building {name: "A-0"}),
+p = shortestPath((c3)-[*]-(a0))
+return length(p)
