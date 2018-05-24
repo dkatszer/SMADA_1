@@ -1,0 +1,91 @@
+
+%%%%%%%%%%%%%%%%%% 1 %%%%%%%%%%%%%%%%%%
+
+%0.9::illegible_handwriting.
+%0.5::heads.
+%pass_exam :- illegible_handwriting, heads.
+
+%0.4::student_knows_the_answer.
+%pass_exam :- student_knows_the_answer, \+ illegible_handwriting.
+
+%query(pass_exam).
+
+%%%%%%%%%%%%%%%%% 2 %%%%%%%%%%%%%%%%%%%%%%
+
+%evidence(student_knows_the_answer, false).
+
+%%%%%%%%%%%%%%%%% 3 %%%%%%%%%%%%%%%%%%%%%
+
+%0.8::has_illegible_writing(maxwell).
+%0.3::has_illegible_writing(joan).
+ 
+%0.5::heads(maxwell).
+%0.5::heads(joan).
+ 
+%0.3::knows_the_answer(maxwell).
+%0.8::knows_the_answer(joan).
+
+%pass_exam(Student) :- heads(Student), has_illegible_writing(Student).
+%pass_exam(Student) :- knows_the_answer(Student), \+ has_illegible_writing(Student).
+
+%query(pass_exam(Student)).
+
+
+%%%%%%%%%%%%%%%%%% 4 %%%%%%%%%%%%%%%%%%%%
+
+%student(maxwell). student(joan).
+%0.5::heads(Name) :- student(Name).
+%0.8::has_illegible_writing(Name) :- student(Name).
+
+%0.3::knows_the_answer(maxwell).
+%0.8::knows_the_answer(joan).
+
+%pass_exam(Student) :- heads(Student), has_illegible_writing(Student).
+%pass_exam(Student) :- knows_the_answer(Student), \+ has_illegible_writing(Student).
+
+%query(pass_exam(Student)).
+
+
+%%%%%%%%%%%%%%%%%%%%%% 5 & 6 %%%%%%%%%%%%%%%%%%%%%%%%
+%student(maxwell). student(joan).
+%0.5::heads(Name) :- student(Name).
+
+%0.3::knows_the_answer(maxwell).
+%0.8::knows_the_answer(joan).
+
+%0.5::handwriting(Name, illegible);
+%0.4::handwriting(Name, partly_legible);
+%0.1::handwriting(Name, legible) :- student(Name).
+
+%0.3::pass_exam(Student) :- handwriting(Student, partly_legible), \+ knows_the_answer(Student).
+%0.7::pass_exam(Student) :- handwriting(Student, partly_legible), knows_the_answer(student).
+%pass_exam(Student) :- heads(Student), handwriting(Student, illegible).
+%pass_exam(Student) :- knows_the_answer(Student), handwriting(Student,legible).
+
+%query(pass_exam(Student)).
+
+%%%%%%%%%%%%%%%%%%%%%% Burglar & Erthquake %%%%%%%%%%%%%%%%%%%%%%%%
+friend(maxwell). friend(joan).
+0.7::burglary.
+
+0.01::earthquake(heavy);
+0.19::earthquake(mild).
+
+0.9::alarm_raised :- burglary, earthquake(heavy).
+0.85::alarm_raised :- burglary, earthquake(mild).
+0.8::alarm_raised :- burglary.
+0.3::alarm_raised :- earthquake(heavy).
+0.1::alarm_raised :- earthquake(mild).
+
+0.8::call_is_made(Name) :- alarm_raised, friend(Name).
+0.1::call_is_made(Name):- \+alarm_raised, friend(Name).
+
+evidence(call_is_made(joan), true).
+evidence(call_is_made(maxwell), true).
+evidence(alarm_raised, false).
+
+is_burglary :- call_is_made(Friend), burglary.
+is_earthquake :- call_is_made(Friend), earthquake(EarthquakeLevel).
+
+query(is_earthquake).
+query(is_burglary).
