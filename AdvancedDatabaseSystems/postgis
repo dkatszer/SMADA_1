@@ -1,0 +1,58 @@
+CREATE SCHEMA dominik_katszer;
+
+SET search_path TO dominik_katszer, public;
+-- use these two schemas which dominik_katszer is a default one.
+-- public is required because in the public schema all gis stuff are held
+
+CREATE TABLE cities (
+  name VARCHAR(255) PRIMARY KEY,
+  coordinates GEOMETRY
+);
+
+\d
+\d cities
+
+INSERT INTO cities(name,coordinates) VALUES ('Cracow',ST_GeomFromText('POINT(19.938333 50.061389)',4326));
+-- 4326 means coordinates reference system
+INSERT INTO cities(name,coordinates) VALUES ('Sopot',ST_GeomFromText('POINT(18.3335 54.2631)',4326));
+
+-- measure the distance between these two cities
+SELECT ST_Distance(
+  (select coordinates from cities where name = 'Cracow'),
+  (select coordinates from cities where name = 'Sopot')
+);
+
+--distance in km
+SELECT ST_Distance_Sphere(
+  (select coordinates from cities where name = 'Cracow'),
+  (select coordinates from cities where name = 'Sopot')
+)/1000 as Distance_in_KM;
+
+-- transform to another spatial ref system
+SELECT ST_Distance(
+  ST_Transform((select coordinates from cities where name = 'Cracow'),4328),
+  ST_Transform((select coordinates from cities where name = 'Sopot'),4328)
+);
+
+-- ## THE SAME BUT WITH GEOGRAPHY which take into account shape of the earth
+CREATE TABLE cities2 (
+  name VARCHAR(255) PRIMARY KEY,
+  coordinates GEOGRAPHY
+);
+INSERT INTO cities2(name,coordinates) VALUES ('Cracow',ST_GeographyFromText('POINT(19.938333 50.061389)'));
+INSERT INTO cities2(name,coordinates) VALUES ('Sopot',ST_GeographyFromText('POINT(18.3335 54.2631)'));
+
+SELECT ST_Distance(
+  (select coordinates from cities2 where name = 'Cracow'),
+  (select coordinates from cities2 where name = 'Sopot')
+);
+
+SELECT ST_Distance(
+  (select coordinates from cities2 where name = 'Cracow'),
+  (select coordinates from cities2 where name = 'Sopot')
+)/1000 as Distance_in_KM;
+
+
+
+--Calculating AREA TODO
+SELECT ST_Area(ST_GeomFromText('POLYGON(...)'));
