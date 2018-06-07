@@ -1,0 +1,16 @@
+# Settings
+cd /usr/local/cadp/
+cat environment 
+cat environment >>~/.pam_environment
+
+# Copy simple example
+mkdir -p ~/lotos/lab1
+cp /usr/local/cadp/demos/demo_01/simple.lotos ~/lotos/lab1/simple.lotos
+
+# Compile
+caesar simple.lotos
+# Draw graph
+bcg_draw simple.bcg
+# Simulation
+xeuca
+

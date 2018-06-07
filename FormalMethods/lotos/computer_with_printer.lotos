@@ -1,0 +1,22 @@
+specification BITALT [EDIT, PRINT, CANCEL] : noexit
+
+behaviour
+   COMP [EDIT, PRINT] |[PRINT]|   DO [PRINT, CANCEL]
+where
+   process DO [PRINT, CANCEL] : noexit :=
+      (
+         PRINT;
+	DO [PRINT, CANCEL]
+      )
+      []
+      (
+         CANCEL;
+	DO [PRINT, CANCEL]
+      )
+   endproc
+	
+   process COMP [EDIT, PRINT] : noexit :=
+      EDIT; PRINT; COMP [EDIT, PRINT]
+   endproc
+
+endspec

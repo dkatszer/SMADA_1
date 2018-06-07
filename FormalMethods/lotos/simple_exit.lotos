@@ -1,0 +1,10 @@
+specification BITALT [PRINT, CANCEL] : exit behaviour 
+                DO [PRINT, CANCEL]
+
+where
+        process DO [PRINT, CANCEL] : exit :=
+                ( PRINT; exit ) [] ( CANCEL; exit ) >>
+		DO [PRINT, CANCEL]
+        endproc
+
+endspec
