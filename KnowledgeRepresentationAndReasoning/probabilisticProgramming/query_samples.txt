@@ -1,0 +1,26 @@
+0.0::visitedAsia.
+0.62::smoker.
+0.692931533308::tubercolosis :- visitedAsia.
+0.02::tubercolosis.
+0.0645161290323::lung_cancer :- smoker.
+0.0::lung_cancer.
+0.445333969868::bronchitis :- smoker.
+0.0384202883135::bronchitis.
+0.991219756865::tuberculois_or_cancer :- lung_cancer.
+0.973251975066::tuberculois_or_cancer :- tubercolosis.
+0.768675098039::dyspnea :- tuberculois_or_cancer.
+0.253830051966::dyspnea :- bronchitis.
+0.149546805481::dyspnea.
+0.999673228595::xray_positive :- tuberculois_or_cancer.
+0.0::xray_positive.
+result :- smoker, xray_positive, lung_cancer.
+
+query(smoker).
+query(visitedAsia).
+query(lung_cancer).
+query(tubercolosis).
+query(dyspnea).
+query(bronchitis).
+query(tuberculois_or_cancer).
+query(xray_positive).
+

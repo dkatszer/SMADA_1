@@ -1,0 +1,8 @@
+problog sample query_samples.txt  -o samples.txt -n 100
+problog lfi ex1.txt patients_random_100.txt -n 100 -v -O result2.pl
+xdg-open result1.png 
+dot -Tpng result1.dot -o result1.png
+problog bn -o result1.dot --format dot ex1.txt
+
+problog lfi ex3_final.txt samples.txt -n 100 -v -O result3.pl
+

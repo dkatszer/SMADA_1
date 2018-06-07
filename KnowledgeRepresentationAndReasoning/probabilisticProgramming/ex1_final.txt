@@ -1,0 +1,26 @@
+0.01::visit_to_asia.
+0.5::smoker.
+
+0.05::tuberculosis :- visit_to_asia.
+0.01::tuberculosis.
+
+0.1::lung_cancer :- smoker.
+0.01::lung_cancer.
+
+0.6::bronchitis :- smoker.
+0.3::bronchitis.
+
+1::tuberculois_or_cancer :- lung_cancer.
+1::tuberculois_or_cancer :- tuberculosis.
+
+0.9::dispnea :- tuberculois_or_cancer.
+0.8::dispnea :- bronchitis.
+0.1::dispnea.
+
+0.98::positive_xray :- tuberculois_or_cancer.
+0.05::positive_xray.
+
+query(dispnea).
+query(lung_cancer).
+query(tuberculosis).
+query(positive_xray).

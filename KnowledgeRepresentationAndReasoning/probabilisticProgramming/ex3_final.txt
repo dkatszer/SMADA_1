@@ -1,0 +1,27 @@
+t(0.01)::visitedAsia.
+t(0.3)::smoker.
+
+t(_)::tubercolosis :- visitedAsia.
+t(_)::tubercolosis.
+
+t(0.7)::lung_cancer :- smoker.
+t(_)::lung_cancer.
+
+t(0.4)::bronchitis :- smoker.
+t(_)::bronchitis.
+
+t(_)::tuberculois_or_cancer :- lung_cancer.
+t(_)::tuberculois_or_cancer :- tubercolosis.
+
+t(0.3)::dyspnea :- tuberculois_or_cancer.
+t(0.2)::dyspnea :- bronchitis.
+t(0.6)::dyspnea.
+
+t(_)::xray_positive :- tuberculois_or_cancer.
+t(_)::xray_positive.
+
+result :- smoker,xray_positive,lung_cancer.
+query(result).
+
+%problog lfi <myFile.txt> <learningData.txt> -n 100 -v -O result.pl
+%cat result.pl
