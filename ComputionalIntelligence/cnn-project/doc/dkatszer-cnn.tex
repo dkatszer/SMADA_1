@@ -33,11 +33,209 @@
 
 \begin{document}
 \maketitle
-\section{a}
+\section{MLP}
+\begin{itemize}
+\item Representation - Objects(Neuron, Synapse)
+\item Layers - \verb!20 , 15 , 11, 7 , 3!
+\item Offline (used in the result example) , Online
+\item Bias
+\item \begin{verbatim}
+enum TrainingCriteria {
+        ACCURACY,
+        MEAN_TOTAL_ERROR
+}
+\end{verbatim}
+\item different activation functions 
+\begin{itemize}
+\item Sigm
+\item SigmPositive
+\item Tanh
+\end{itemize}
+\end{itemize}
+\subsection{Results}
+\begin{verbatim}
+#### TRAINING ####
+Accuracy: 67.85714285714286 | Mean Total Error : 0.3481179465226858 | Learning Rate : 0.3685929255907847
+Accuracy: 67.85714285714286 | Mean Total Error : 0.347805830192258 | Learning Rate : 0.36675446901022923
+Accuracy: 67.85714285714286 | Mean Total Error : 0.34710759046345574 | Learning Rate : 0.3649251822274747
+Accuracy: 67.85714285714286 | Mean Total Error : 0.34616780074622494 | Learning Rate : 0.3631050195056829
+Accuracy: 67.85714285714286 | Mean Total Error : 0.3457603252557716 | Learning Rate : 0.36129393533613996
+Accuracy: 67.85714285714286 | Mean Total Error : 0.34545879474120117 | Learning Rate : 0.35949188443711927
+Accuracy: 94.64285714285714 | Mean Total Error : 0.06408694400317765 | Learning Rate : 0.35769882175274853
+Accuracy: 97.32142857142857 | Mean Total Error : 0.048883405588888935 | Learning Rate : 0.3559147024518848
+Accuracy: 97.32142857142857 | Mean Total Error : 0.04968049859187475 | Learning Rate : 0.3541394819269915
+Accuracy: 97.32142857142857 | Mean Total Error : 0.04824868367806064 | Learning Rate : 0.3523731157930248
+Accuracy: 97.32142857142857 | Mean Total Error : 0.0478771659659481 | Learning Rate : 0.35061555988632287
+Accuracy: 80.35714285714286 | Mean Total Error : 0.25642440002346334 | Learning Rate : 0.3488667702635023
+Accuracy: 85.71428571428571 | Mean Total Error : 0.25851574240770187 | Learning Rate : 0.34712670320035915
+Accuracy: 97.32142857142857 | Mean Total Error : 0.045487907687056246 | Learning Rate : 0.3453953151907755
+Accuracy: 97.32142857142857 | Mean Total Error : 0.045389259977931654 | Learning Rate : 0.3436725629456319
+Accuracy: 97.32142857142857 | Mean Total Error : 0.04514847258438669 | Learning Rate : 0.3419584033917254
+Accuracy: 67.85714285714286 | Mean Total Error : 0.3433342763411788 | Learning Rate : 0.3402527936706919
+Accuracy: 96.42857142857143 | Mean Total Error : 0.039575642280450914 | Learning Rate : 0.338555691137935
+Accuracy: 96.42857142857143 | Mean Total Error : 0.046086275973108166 | Learning Rate : 0.33686705336156003
+Accuracy: 96.42857142857143 | Mean Total Error : 0.04936786091100671 | Learning Rate : 0.3351868381213129
+Accuracy: 96.42857142857143 | Mean Total Error : 0.051438285016052486 | Learning Rate : 0.33351500340752377
+Accuracy: 96.42857142857143 | Mean Total Error : 0.0438170546252724 | Learning Rate : 0.3318515074200578
+Accuracy: 96.42857142857143 | Mean Total Error : 0.04436233954850279 | Learning Rate : 0.33019630856726934
+Accuracy: 96.42857142857143 | Mean Total Error : 0.05971305582240829 | Learning Rate : 0.328549365464963
+Accuracy: 96.42857142857143 | Mean Total Error : 0.052168837000533486 | Learning Rate : 0.3269106369353571
+Accuracy: 96.42857142857143 | Mean Total Error : 0.05081489304902181 | Learning Rate : 0.3252800820060563
+Accuracy: 96.42857142857143 | Mean Total Error : 0.05254434675615921 | Learning Rate : 0.3236576599090256
+Accuracy: 96.42857142857143 | Mean Total Error : 0.049695134901107225 | Learning Rate : 0.3220433300795712
+Accuracy: 96.42857142857143 | Mean Total Error : 0.05526225723258627 | Learning Rate : 0.3204370521553277
+Accuracy: 96.42857142857143 | Mean Total Error : 0.051697323723371415 | Learning Rate : 0.31883878597524673
+Accuracy: 97.32142857142857 | Mean Total Error : 0.054045388049988645 | Learning Rate : 0.31724849157859475
+Accuracy: 96.42857142857143 | Mean Total Error : 0.047555861743873704 | Learning Rate : 0.3156661292039527
+Accuracy: 96.42857142857143 | Mean Total Error : 0.043877498301418225 | Learning Rate : 0.31409165928822264
+Accuracy: 97.32142857142857 | Mean Total Error : 0.039316170522987894 | Learning Rate : 0.31252504246563834
+Accuracy: 96.42857142857143 | Mean Total Error : 0.045900892909281774 | Learning Rate : 0.3109662395667806
+Accuracy: 96.42857142857143 | Mean Total Error : 0.049325593025040956 | Learning Rate : 0.30941521161759816
+Accuracy: 97.32142857142857 | Mean Total Error : 0.04513504614549455 | Learning Rate : 0.3078719198384337
+Accuracy: 97.32142857142857 | Mean Total Error : 0.050413593242101554 | Learning Rate : 0.3063363256430539
+Accuracy: 97.32142857142857 | Mean Total Error : 0.0423608348906724 | Learning Rate : 0.30480839063768445
+Accuracy: 97.32142857142857 | Mean Total Error : 0.039169611674735 | Learning Rate : 0.3032880766200503
+Accuracy: 98.21428571428571 | Mean Total Error : 0.035198932300203246 | Learning Rate : 0.3017753455784205
+Accuracy: 96.42857142857143 | Mean Total Error : 0.05223535582899223 | Learning Rate : 0.3002701596906586
+Accuracy: 97.32142857142857 | Mean Total Error : 0.04466371246136079 | Learning Rate : 0.2987724813232754
+Accuracy: 97.32142857142857 | Mean Total Error : 0.046886437979358916 | Learning Rate : 0.2972822730304891
+Accuracy: 97.32142857142857 | Mean Total Error : 0.0466908112941181 | Learning Rate : 0.29579949755328894
+Accuracy: 96.42857142857143 | Mean Total Error : 0.06713969922176269 | Learning Rate : 0.2943241178185034
+Accuracy: 96.42857142857143 | Mean Total Error : 0.059246226817558346 | Learning Rate : 0.2928560969378738
+Accuracy: 99.10714285714286 | Mean Total Error : 0.029460467360612495 | Learning Rate : 0.2913953982071309
+#### TESTING ####
+Accuracy: 100.0 | Mean Total Error : 1.2573782769370595E-4
 
+\end{verbatim}
+\section{Autoencoder}
+\begin{figure}[H]
+\centerline{\includegraphics[width=1.2\linewidth]{autoencoder}}
+\end{figure}
+\begin{itemize}
+\item Can be connected with MLP
+\end{itemize}
+\begin{verbatim}
+#### TRAINING ####
+Accuracy: 0.0 | Mean Total Error : 0.5855902435365036 | Learning Rate : 0.49755587079858454
+ Mean Total Error : 0.5815777911064501 | Learning Rate : 0.4950741767633624
+ Mean Total Error : 0.5815232175523518 | Learning Rate : 0.4926048608461484
+ Mean Total Error : 0.581473485125687 | Learning Rate : 0.4901478613077423
+ Mean Total Error : 0.5814221070285485 | Learning Rate : 0.48770311671688454
+ Mean Total Error : 0.5813686735859596 | Learning Rate : 0.48527056594872037
+ Mean Total Error : 0.5813127342278489 | Learning Rate : 0.48285014818327243
+ Mean Total Error : 0.5812537751133202 | Learning Rate : 0.48044180290391847
+ Mean Total Error : 0.5811912026833433 | Learning Rate : 0.47804546989587987
+ Mean Total Error : 0.5811243227941969 | Learning Rate : 0.475661089244715
+ Mean Total Error : 0.5810523138947598 | Learning Rate : 0.4732886013348218
+ Mean Total Error : 0.580974192084998 | Learning Rate : 0.47092794684794737
+ Mean Total Error : 0.5808887649783954 | Learning Rate : 0.4685790667617047
+ Mean Total Error : 0.580794569922281 | Learning Rate : 0.4662419023480959
+ Mean Total Error : 0.5806897900445701 | Learning Rate : 0.4639163951720459
+ Mean Total Error : 0.5805721383583332 | Learning Rate : 0.46160248708993973
+ Mean Total Error : 0.5804386950287255 | Learning Rate : 0.45930012024816924
+ Mean Total Error : 0.5802856746069384 | Learning Rate : 0.45700923708168734
+ Mean Total Error : 0.5801080862758482 | Learning Rate : 0.4547297803125676
+ Mean Total Error : 0.5798992267442007 | Learning Rate : 0.45246169294857297
+ Mean Total Error : 0.5796499044819402 | Learning Rate : 0.45020491828173037
+ Mean Total Error : 0.5793472202041822 | Learning Rate : 0.4479593998869134
+ Mean Total Error : 0.5789725913044943 | Learning Rate : 0.4457250816204304
+ Mean Total Error : 0.5784984445193213 | Learning Rate : 0.4435019076186224
+ Mean Total Error : 0.5778824799911412 | Learning Rate : 0.44128982229646474
+ Mean Total Error : 0.5770573559083385 | Learning Rate : 0.43908877034617894
+ Mean Total Error : 0.5759115119699737 | Learning Rate : 0.436898696735848
+ Mean Total Error : 0.5742528170915963 | Learning Rate : 0.434719546708042
+ Mean Total Error : 0.5717411902090561 | Learning Rate : 0.43255126577844855
+ Mean Total Error : 0.5677812836385794 | Learning Rate : 0.4303937997345099
+ Mean Total Error : 0.5614406379481949 | Learning Rate : 0.42824709463406874
+ Mean Total Error : 0.5516648304958327 | Learning Rate : 0.42611109680401815
+ Mean Total Error : 0.5379602651974601 | Learning Rate : 0.42398575283896117
+ Mean Total Error : 0.5212293215996404 | Learning Rate : 0.4218710095998735
+ Mean Total Error : 0.5044347545865747 | Learning Rate : 0.419766814212777
+ Mean Total Error : 0.490928395145613 | Learning Rate : 0.41767311406741614
+ Mean Total Error : 0.4816666949007199 | Learning Rate : 0.4155898568159438
+ Mean Total Error : 0.4756894986132519 | Learning Rate : 0.41351699037161127
+ Mean Total Error : 0.4718074873877297 | Learning Rate : 0.411454462907467
+ Mean Total Error : 0.46919889334562903 | Learning Rate : 0.40940222285506006
+ Mean Total Error : 0.4673685518947611 | Learning Rate : 0.4073602189031514
+ Mean Total Error : 0.4660217322387867 | Learning Rate : 0.4053283999964299
+ Mean Total Error : 0.4649798934903286 | Learning Rate : 0.4033067153342374
+ Mean Total Error : 0.4641328554237029 | Learning Rate : 0.4012951143692972
+ Mean Total Error : 0.46341146377491116 | Learning Rate : 0.3992935468064511
+ Mean Total Error : 0.46277152847645225 | Learning Rate : 0.3973019626014011
+ Mean Total Error : 0.46218421931363196 | Learning Rate : 0.39532031195945916
+ Mean Total Error : 0.4616302569806955 | Learning Rate : 0.3933485453343014
+ Mean Total Error : 0.46109635736078786 | Learning Rate : 0.39138661342672953
+ Mean Total Error : 0.4605730206281211 | Learning Rate : 0.38943446718343827
+ Mean Total Error : 0.4600531275211985 | Learning Rate : 0.38749205779578916
+ Mean Total Error : 0.459531022782556 | Learning Rate : 0.3855593366985897
+ Mean Total Error : 0.4590018930758157 | Learning Rate : 0.38363625556887987
+ Mean Total Error : 0.45846132089706215 | Learning Rate : 0.38172276632472274
+ Mean Total Error : 0.4579049389570913 | Learning Rate : 0.37981882112400356
+ Mean Total Error : 0.45732813381055587 | Learning Rate : 0.3779243723632328
+ Mean Total Error : 0.456725760188516 | Learning Rate : 0.3760393726763561
+ Mean Total Error : 0.4560918322307627 | Learning Rate : 0.37416377493357034
+ Mean Total Error : 0.45541915609329964 | Learning Rate : 0.37229753224014495
+ Mean Total Error : 0.4546988599688363 | Learning Rate : 0.37044059793524853
+ Mean Total Error : 0.45391976028661274 | Learning Rate : 0.3685929255907847
+ Mean Total Error : 0.4530674719395095 | Learning Rate : 0.36675446901022923
+ Mean Total Error : 0.45212311629886065 | Learning Rate : 0.3649251822274747
+ Mean Total Error : 0.4510613849033831 | Learning Rate : 0.3631050195056829
+ Mean Total Error : 0.44984754172138697 | Learning Rate : 0.36129393533613996
+ Mean Total Error : 0.44843261483334207 | Learning Rate : 0.35949188443711927
+ Mean Total Error : 0.4467453680346566 | Learning Rate : 0.35769882175274853
+ Mean Total Error : 0.44467825501685143 | Learning Rate : 0.3559147024518848
+ Mean Total Error : 0.44206144566925126 | Learning Rate : 0.3541394819269915
+ Mean Total Error : 0.4386114691148656 | Learning Rate : 0.3523731157930248
+ Mean Total Error : 0.4338209538841718 | Learning Rate : 0.35061555988632287
+ Mean Total Error : 0.4266962711293532 | Learning Rate : 0.3488667702635023
+ Mean Total Error : 0.4150472364683253 | Learning Rate : 0.34712670320035915
+ Mean Total Error : 0.3932435987760833 | Learning Rate : 0.3453953151907755
+ Mean Total Error : 0.3443311846355125 | Learning Rate : 0.3436725629456319
+ Mean Total Error : 0.22971801521116544 | Learning Rate : 0.3419584033917254
+ Mean Total Error : 0.1208552482318342 | Learning Rate : 0.3402527936706919
+ Mean Total Error : 0.0979302749281623 | Learning Rate : 0.338555691137935
+ Mean Total Error : 0.09311431370610342 | Learning Rate : 0.33686705336156003
+ Mean Total Error : 0.09024978917845472 | Learning Rate : 0.3351868381213129
+ Mean Total Error : 0.08783919131820982 | Learning Rate : 0.33351500340752377
+ Mean Total Error : 0.08571904241039639 | Learning Rate : 0.3318515074200578
+ Mean Total Error : 0.08383960911387923 | Learning Rate : 0.33019630856726934
+ Mean Total Error : 0.08216537246471832 | Learning Rate : 0.328549365464963
+ Mean Total Error : 0.08066656522175089 | Learning Rate : 0.3269106369353571
+ Mean Total Error : 0.07931802221917748 | Learning Rate : 0.3252800820060563
+ Mean Total Error : 0.07809856415768814 | Learning Rate : 0.3236576599090256
+ Mean Total Error : 0.07699042630539096 | Learning Rate : 0.3220433300795712
+ Mean Total Error : 0.075978730206625 | Learning Rate : 0.3204370521553277
+ Mean Total Error : 0.07505101409547653 | Learning Rate : 0.31883878597524673
+ Mean Total Error : 0.07419682695760473 | Learning Rate : 0.31724849157859475
+#### TESTING ####
+ Mean Total Error : 0.1313847119261515
+\end{verbatim}
+\subsection{Results}
+\section{SOM}
+\subsection{Results}
 \section{CNN-project}
 \subsection{CNN steps}
-\subsection{Data set preparation}
+\subsection{Data set}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{data_hist}
+\end{figure}
+\begin{figure}[H]
+\centerline{\includegraphics[width=1.2\linewidth]{traffic_signs}}
+\caption{How many images is in data set grouped by type}
+\end{figure}
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.9]{random_signs}}
+\caption{Randomly chosen images}
+\end{figure}
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.9]{after_resizing}}
+\caption{After resizing}
+\end{figure}
+\begin{figure}[H]
+\centerline{\includegraphics[scale=0.9]{after_gray}}
+\caption{After converting rgb to gray scale}
+\end{figure}
 \subsection{Results}
 
 \end{document}          
